@@ -11751,7 +11751,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Project-1:-Test-a-Perceptual-Phenomenon">Project 1: Test a Perceptual Phenomenon<a class="anchor-link" href="#Project-1:-Test-a-Perceptual-Phenomenon">&#182;</a></h1><h3 id="Preamble-and-experimental-design">Preamble and experimental design<a class="anchor-link" href="#Preamble-and-experimental-design">&#182;</a></h3><p>In this variation of the Stroop Task, we want to know if an incongruency between the printed ink color of a word and its text content will increase the time needed to name the ink color. The independent variable is the congruent or incongruent condition of the words; that is, whether or not the printed color of the word matches its text. The dependent variable is the time it takes to name the ink colors. The question to answer is: does the incongruent condition affect the time needed to name the ink color? The setup of the experiment provides us with dependent, paired samples; one for each condition. As such, a standard Student's t-test for the comparison of dependent samples should be sufficient to determine the condition's effect. Our hypotheses and experimental setup is as follows, where $ \mu_c $ is the mean congruent time for naming, and $ \mu_i $ the mean incongruent time. We select an alhpa-level of 0.05, which for a two-tailed test with 24 samples gives us a t-critical value of plus/minus 2.064.</p>
+<h1 id="Project-1:-Test-a-Perceptual-Phenomenon">Project 1: Test a Perceptual Phenomenon<a class="anchor-link" href="#Project-1:-Test-a-Perceptual-Phenomenon">&#182;</a></h1><h3 id="Preamble-and-experimental-design">Preamble and experimental design<a class="anchor-link" href="#Preamble-and-experimental-design">&#182;</a></h3><p>In this variation of the Stroop Task, we want to know if an incongruency between the printed ink color of a word and its text content will increase the time needed to name the ink color. The independent variable is the congruent or incongruent condition of the words; that is, whether or not the printed color of the word matches its text. The dependent variable is the time it takes to name the ink colors. The question to answer is: does the incongruent condition affect the time needed to name the ink color?</p>
+<p>The setup of the experiment provides us with dependent, paired samples; one for each condition. As such, a standard Student's t-test for the comparison of dependent samples should be sufficient to determine the condition's effect. We assume that the data is continuous and normally distributed; and that our sample subjects are random, and the same for both conditions.</p>
+<p>Our hypotheses and experimental setup is as follows, where $ \mu_c $ is the mean congruent time for naming, and $ \mu_i $ the mean incongruent time. The null hypothesis is that mean congruent time is equal to the mean incogruent time; the alternative hypothesis is that they are not equal. We select an alpha-level of 0.05, which for a two-tailed test with 24 samples gives us a t-critical value of plus/minus 2.064.</p>
 <p>$ H_0: \mu_c=\mu_i $</p>
 <p>$ H_A: \mu_c \ne \mu_i $</p>
 <p>$ \alpha=0.05, n=24 $</p>
@@ -12445,17 +12447,18 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Double-check</span>
 
-<span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stroop_data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Congruent</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">Incongruent</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
-<span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;diff_dev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
-<span class="k">print</span> <span class="n">stroop_data</span>
+<span class="n">summary_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stroop_data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Congruent</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">Incongruent</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
+<span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;diff_dev&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+<span class="k">print</span> <span class="n">summary_data</span>
 
 <span class="n">mean_diff</span> <span class="o">=</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;Incongruent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="k">print</span> <span class="s2">&quot;DF mean equals point estimate: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_diff</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;DF mean equals point estimate: &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_diff</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 
-<span class="n">calc_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">stroop_data</span><span class="o">.</span><span class="n">diff_dev</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stroop_data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
-<span class="k">print</span> <span class="s2">&quot;DF diff std equals calculated std: &quot;</span><span class="p">,</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">==</span> <span class="n">calc_std</span>
+<span class="n">calc_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">summary_data</span><span class="o">.</span><span class="n">diff_dev</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">summary_data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+<span class="k">print</span> <span class="s2">&quot;DF diff std equals calculated std: &quot;</span><span class="p">,</span> <span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">==</span> <span class="n">calc_std</span>
 
-<span class="n">t</span> <span class="o">=</span> <span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">stroop_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>  <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">stroop_data</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">summary_data</span><span class="p">[</span><span class="s1">&#39;dlt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>  <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">summary_data</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;t-statistic: &quot;</span><span class="p">,</span> <span class="n">t</span>
 </pre></div>
 
@@ -12469,31 +12472,31 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>    Congruent  Incongruent     dlt    diff_dev
-0      12.079       19.278  -7.199    0.586437
-1      16.791       18.741  -1.950   36.177719
-2       9.564       21.214 -11.650   13.580760
-3       8.630       15.687  -7.057    0.824086
-4      14.669       22.803  -8.134    0.028631
-5      12.238       20.878  -8.640    0.455906
-6      14.692       24.572  -9.880    3.668023
-7       8.987       17.394  -8.407    0.195548
-8       9.401       20.762 -11.361   11.534231
-9      14.480       26.282 -11.802   14.724168
-10     22.328       24.524  -2.196   33.278957
-11     15.298       18.644  -3.346   21.333236
-12     15.073       17.510  -2.437   30.556481
-13     16.929       20.330  -3.401   20.828194
-14     18.200       35.255 -17.055   82.631888
-15     12.130       22.158 -10.028    4.256829
-16     18.495       25.139  -6.644    1.744491
-17     10.639       20.429  -9.790    3.331385
-18     11.344       17.425  -6.081    3.548671
-19     12.369       34.288 -21.919  194.719930
-20     12.944       23.894 -10.950    8.911469
-21     14.233       17.960  -3.727   17.958878
-22     19.710       22.058  -2.348   31.548349
-23     16.004       21.157  -5.153    7.906172
+<pre>       dlt    diff_dev
+0   -7.199    0.586437
+1   -1.950   36.177719
+2  -11.650   13.580760
+3   -7.057    0.824086
+4   -8.134    0.028631
+5   -8.640    0.455906
+6   -9.880    3.668023
+7   -8.407    0.195548
+8  -11.361   11.534231
+9  -11.802   14.724168
+10  -2.196   33.278957
+11  -3.346   21.333236
+12  -2.437   30.556481
+13  -3.401   20.828194
+14 -17.055   82.631888
+15 -10.028    4.256829
+16  -6.644    1.744491
+17  -9.790    3.331385
+18  -6.081    3.548671
+19 -21.919  194.719930
+20 -10.950    8.911469
+21  -3.727   17.958878
+22  -2.348   31.548349
+23  -5.153    7.906172
 DF mean equals point estimate:  True
 DF diff std equals calculated std:  True
 t-statistic:  -8.02070694411
@@ -12510,7 +12513,7 @@ t-statistic:  -8.02070694411
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ci</span> <span class="o">=</span> <span class="mf">2.064</span> <span class="o">*</span> <span class="p">(</span><span class="n">calc_std</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">stroop_data</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ci</span> <span class="o">=</span> <span class="mf">2.064</span> <span class="o">*</span> <span class="p">(</span><span class="n">calc_std</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">summary_data</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;confidence interval: (&quot;</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">-</span> <span class="n">ci</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">ci</span><span class="p">,</span> <span class="s2">&quot;)&quot;</span>
 </pre></div>
 
@@ -12538,7 +12541,8 @@ t-statistic:  -8.02070694411
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Concluding-remarks">Concluding remarks<a class="anchor-link" href="#Concluding-remarks">&#182;</a></h3><p>The experiemnt confirmed our expectations: incongruency between a printed word's ink color and text content impeded naming the ink color. The Stroop effect is a demonstration of cognitive interference, which can take many forms. Research shows that, despite the claims of "multitaskers", the human mind can only focus on one subject at a time. Conflicting stimuli, as in the case of the Stroop task, can affect the speed and accuracy of memory and recall. A practical examination of this phenomena would be to see the speed with which students complete assignments in the presence of distractions like music or televeision. Another experiment with more serious consequences would be to study reaction time for distracted drivers.</p>
+<h3 id="Concluding-remarks">Concluding remarks<a class="anchor-link" href="#Concluding-remarks">&#182;</a></h3><p>The experiment confirmed our expectations: incongruency between a printed word's ink color and text content impeded naming the ink color. We could repeat the experiment using a one-tailed test to provide stronger evidence that incogruency indeed slows down naming, but as an opening inquiry it seems enough to confirm that incongruency produces an effect.</p>
+<p>The Stroop effect is a demonstration of cognitive interference, which can take many forms. Despite the claims of "multitaskers", the human mind can only focus on one subject at a time. Conflicting stimuli, as in the case of the Stroop task, can affect the speed and accuracy of memory and recall. A practical examination of this phenomena would be to see the speed with which students complete assignments in the presence of distractions like music or television. Another experiment with more serious consequences would be to study reaction time for distracted drivers.</p>
 
 </div>
 </div>
