@@ -11752,12 +11752,12 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Project-1:-Test-a-Perceptual-Phenomenon">Project 1: Test a Perceptual Phenomenon<a class="anchor-link" href="#Project-1:-Test-a-Perceptual-Phenomenon">&#182;</a></h1><h3 id="Preamble-and-experimental-design">Preamble and experimental design<a class="anchor-link" href="#Preamble-and-experimental-design">&#182;</a></h3><p>In this variation of the Stroop Task, we want to know if an incongruency between the printed ink color of a word and its text content will increase the time needed to name the ink color. The independent variable is the congruent or incongruent condition of the words; that is, whether or not the printed color of the word matches its text. The dependent variable is the time it takes to name the ink colors. The question to answer is: does the incongruent condition affect the time needed to name the ink color?</p>
-<p>The setup of the experiment provides us with dependent, paired samples; one for each condition. As such, a standard Student's t-test for the comparison of dependent samples should be sufficient to determine the condition's effect. We assume that the data is continuous and normally distributed; and that our sample subjects are random, and the same for both conditions.</p>
-<p>Our hypotheses and experimental setup is as follows, where $ \mu_c $ is the mean congruent time for naming, and $ \mu_i $ the mean incongruent time. The null hypothesis is that mean congruent time is equal to the mean incogruent time; the alternative hypothesis is that they are not equal. We select an alpha-level of 0.05, which for a two-tailed test with 24 samples gives us a t-critical value of plus/minus 2.064.</p>
+<p>The setup of the experiment provides us with dependent, paired samples; one for each condition. The sample size is less than 30, and population parameters like standard deviation are unknown. With more information about the population, we would be able to use a z-test. Instead, a standard Student's t-test for the comparison of dependent samples is our best option to determine the condition's effect. We assume that the data is continuous and normally distributed; and that our sample subjects are random, and the same for both conditions.</p>
+<p>Our hypotheses and experimental setup is as follows, where $ \mu_c $ is the population's mean congruent time for naming, and $ \mu_i $ the population's mean incongruent time. The null hypothesis is that mean congruent time for the population is equal to the population's mean incogruent time; the alternative hypothesis is that they are not equal. There are 24 samples available, giving us 23 degrees of freedom, and we select an alpha-level of 0.05. A two-tailed test with 23 degrees of freedom and an alpha-level of 0.05 has a t-critical value of plus/minus 2.069.</p>
 <p>$ H_0: \mu_c=\mu_i $</p>
 <p>$ H_A: \mu_c \ne \mu_i $</p>
 <p>$ \alpha=0.05, n=24 $</p>
-<p>$ t_{critical} = \pm2.064 $</p>
+<p>$ t_{critical} = \pm2.069 $</p>
 
 </div>
 </div>
@@ -12219,7 +12219,7 @@ AAAAsNr/Aaiqii48IC+VAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># http://pandas.pydata.org/pandas-docs/stable/visualization.html#visualization-hist</span>
@@ -12399,7 +12399,7 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Hypothesis-testing-and-conclusion">Hypothesis testing and conclusion<a class="anchor-link" href="#Hypothesis-testing-and-conclusion">&#182;</a></h3><p>We perform the Student's t-test for the comparison of dependent samples. The scipy.stats library has a built-in function for this. From the initial setup, we recall the t-critical value for our experiment is plus/minus 2.064. The test returns a t-statistic of -8, far beyond the critical value. Accordingly, the test provides a probablity of observing such a value due to chance at less than 1 in 10 million.</p>
+<h3 id="Hypothesis-testing-and-conclusion">Hypothesis testing and conclusion<a class="anchor-link" href="#Hypothesis-testing-and-conclusion">&#182;</a></h3><p>We perform the Student's t-test for the comparison of dependent samples. The scipy.stats library has a built-in function for this. From the initial setup, we recall the t-critical value for 23 degrees of freedom is plus/minus 2.069. The test returns a t-statistic of -8, far beyond the critical value. Accordingly, the test provides a probablity of observing such a value due to chance at less than 1 in 10 million.</p>
 <p>We perform the t-test manually, just to be sure the function is behaving as expected. This also sets us up with the data necessary to generate a confidence interval.</p>
 <p>Conclusion: there is sufficient evidence to reject the null hypothesis. It appears that incongruence between printed ink color and text context content affects naming the ink color. We are 95% confident that the incogruent naming time is between approximately 6 and 10 seconds slower than the congruent naming time. This lines up with our naive expectations; it seems logical that incogruence would cause cognitive interference, and slow down the naming process.</p>
 
@@ -12408,7 +12408,7 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># http://stackoverflow.com/questions/13404468/t-test-in-pandas-python</span>
@@ -12427,7 +12427,7 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12442,7 +12442,7 @@ bgAALITgBgDAQv4fBVvYwiUQkBQAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Double-check</span>
@@ -12510,10 +12510,10 @@ t-statistic:  -8.02070694411
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ci</span> <span class="o">=</span> <span class="mf">2.064</span> <span class="o">*</span> <span class="p">(</span><span class="n">calc_std</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">summary_data</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ci</span> <span class="o">=</span> <span class="mf">2.069</span> <span class="o">*</span> <span class="p">(</span><span class="n">calc_std</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">summary_data</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;confidence interval: (&quot;</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">-</span> <span class="n">ci</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">ci</span><span class="p">,</span> <span class="s2">&quot;)&quot;</span>
 </pre></div>
 
@@ -12527,7 +12527,7 @@ t-statistic:  -8.02070694411
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>confidence interval: ( -10.0144027688 , -5.91518056448 )
+<pre>confidence interval: ( -10.019367912 , -5.91021542131 )
 </pre>
 </div>
 </div>
